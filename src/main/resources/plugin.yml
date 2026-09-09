@@ -1,0 +1,19 @@
+name: MagicDuels
+version: '1.2.0'
+main: com.magicsmp.duels.MagicDuels
+api-version: '26.2'
+author: MagicSMP
+description: Inventory-safe kit duels for MagicSMP with gamemode GUI and optional Vault wagers.
+softdepend: [Vault]
+commands:
+  duel:
+    description: Challenge players and manage duels.
+    usage: /duel <player> [wager]
+    aliases: [duels]
+permissions:
+  magicduels.use:
+    description: Allows players to use duels.
+    default: true
+  magicduels.admin:
+    description: Allows arena setup, reload and admin controls.
+    default: op

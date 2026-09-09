@@ -1,0 +1,176 @@
+# MagicDuels configuration
+
+request-timeout-seconds: 60
+countdown-seconds: 3
+
+# Wagers require Vault + a Vault-compatible economy plugin.
+# Players can use amounts such as: 1000, 1k, 25k, 1.5m, 2m, 1b
+wagers:
+  enabled: true
+  minimum: 0
+  maximum: 1000000000
+
+# When a player runs /duel accept, this menu appears first.
+# The challenged player selects the gamemode for the duel.
+gamemode-gui:
+  title: '&8Choose Duel Gamemode'
+  size: 27
+  filler: GRAY_STAINED_GLASS_PANE
+
+# Gamemode kits are temporary. The players' real inventories are saved before
+# the duel and completely restored afterwards.
+#
+# Inventory format: SLOT:MATERIAL:AMOUNT
+# Hotbar slots are 0-8. Main inventory slots are 9-35.
+# Armor/offhand format: MATERIAL or MATERIAL:AMOUNT
+#
+# You can freely edit these kits or add more modes using the same format.
+gamemodes:
+  sword:
+    enabled: true
+    slot: 10
+    icon: DIAMOND_SWORD
+    name: '&b&lSword PvP'
+    lore:
+      - '&7Diamond sword and armor'
+      - '&7Simple classic PvP'
+    kit:
+      helmet: DIAMOND_HELMET
+      chestplate: DIAMOND_CHESTPLATE
+      leggings: DIAMOND_LEGGINGS
+      boots: DIAMOND_BOOTS
+      offhand: SHIELD
+      inventory:
+        - '0:DIAMOND_SWORD:1'
+        - '1:GOLDEN_APPLE:8'
+        - '8:COOKED_BEEF:32'
+
+  axe:
+    enabled: true
+    slot: 12
+    icon: DIAMOND_AXE
+    name: '&c&lAxe PvP'
+    lore:
+      - '&7Diamond axe and shield'
+      - '&7Heavy-hitting combat'
+    kit:
+      helmet: DIAMOND_HELMET
+      chestplate: DIAMOND_CHESTPLATE
+      leggings: DIAMOND_LEGGINGS
+      boots: DIAMOND_BOOTS
+      offhand: SHIELD
+      inventory:
+        - '0:DIAMOND_AXE:1'
+        - '1:DIAMOND_SWORD:1'
+        - '2:GOLDEN_APPLE:8'
+        - '8:COOKED_BEEF:32'
+
+  archer:
+    enabled: true
+    slot: 14
+    icon: BOW
+    name: '&a&lArcher'
+    lore:
+      - '&7Bow, arrows and sword'
+      - '&7Fight from range or up close'
+    kit:
+      helmet: IRON_HELMET
+      chestplate: IRON_CHESTPLATE
+      leggings: IRON_LEGGINGS
+      boots: IRON_BOOTS
+      offhand: SHIELD
+      inventory:
+        - '0:IRON_SWORD:1'
+        - '1:BOW:1'
+        - '2:ARROW:64'
+        - '3:GOLDEN_APPLE:4'
+        - '8:COOKED_BEEF:32'
+
+  crystal:
+    enabled: true
+    slot: 22
+    icon: END_CRYSTAL
+    name: '&d&lCrystal PvP'
+    lore:
+      - '&7End crystals, obsidian and Netherite gear'
+      - '&7Fast explosive PvP'
+    kit:
+      helmet: NETHERITE_HELMET
+      chestplate: NETHERITE_CHESTPLATE
+      leggings: NETHERITE_LEGGINGS
+      boots: NETHERITE_BOOTS
+      offhand: TOTEM_OF_UNDYING
+      inventory:
+        - '0:NETHERITE_SWORD:1'
+        - '1:END_CRYSTAL:64'
+        - '2:OBSIDIAN:64'
+        - '3:GOLDEN_APPLE:16'
+        - '4:TOTEM_OF_UNDYING:1'
+        - '8:COOKED_BEEF:32'
+
+  netherite:
+    enabled: true
+    slot: 16
+    icon: NETHERITE_SWORD
+    name: '&5&lNetherite'
+    lore:
+      - '&7Full Netherite equipment'
+      - '&7For longer, stronger fights'
+    kit:
+      helmet: NETHERITE_HELMET
+      chestplate: NETHERITE_CHESTPLATE
+      leggings: NETHERITE_LEGGINGS
+      boots: NETHERITE_BOOTS
+      offhand: SHIELD
+      inventory:
+        - '0:NETHERITE_SWORD:1'
+        - '1:NETHERITE_AXE:1'
+        - '2:GOLDEN_APPLE:16'
+        - '8:COOKED_BEEF:32'
+
+# Commands players may still use while actively dueling.
+# Everything else is blocked.
+allowed-commands-during-duel:
+  - duel
+
+messages:
+  prefix: '&6&lMagicSMP &8» &r'
+  no-permission: '&cYou do not have permission to do that.'
+  players-only: '&cOnly players can use this command.'
+  arena-not-set: '&cThe duel arena is not fully set up yet.'
+  player-not-found: '&cThat player is not online.'
+  challenger-offline: '&cThe player who challenged you is no longer online.'
+  cannot-duel-self: '&cYou cannot duel yourself.'
+  already-dueling: '&cOne of you is already in a duel.'
+
+  request-sent: '&aYou challenged &e%player% &ato a duel. &7Waiting for them to accept...'
+  request-received: '&e%player% &ahas challenged you to a duel! &7No wager. &aType &e/duel accept &ato accept or &c/duel deny &ato decline.'
+
+  request-sent-wager: '&aYou challenged &e%player% &ato a duel for &6$%amount%&a. &7Winner receives &6$%pot%&7. Waiting for them to accept...'
+  request-received-wager: '&e%player% &ahas challenged you to a duel! &6Wager: $%amount% &8| &6Winner receives: $%pot%&a. Type &e/duel accept &ato accept or &c/duel deny &ato decline.'
+
+  choose-gamemode: '&aChoose the duel gamemode from the menu.'
+  gamemode-selected: '&aYou selected %gamemode%&a.'
+  gamemode-selected-other: '&e%player% &aselected %gamemode% &afor the duel.'
+  gamemode-start: '&7Duel gamemode: %gamemode%'
+  gamemode-not-selected: '&7No gamemode selected. Use &e/duel accept &7to open the menu again.'
+  no-gamemodes: '&cThere are no duel gamemodes enabled.'
+
+  request-expired: '&cThat duel request has expired.'
+  request-denied-sender: '&c%player% declined your duel request.'
+  request-denied-target: '&7You declined &e%player%&7''s duel request.'
+  no-request: '&cYou do not have a duel request to respond to.'
+  countdown: '&e%seconds%...'
+  fight: '&c&lFIGHT!'
+  winner: '&6%winner% &awon the duel against &e%loser%&a!'
+  wager-winner: '&6%winner% &awon the duel and received &a$%amount%&6.'
+  commands-blocked: '&cYou cannot use that command while dueling.'
+  no-economy: '&cWagers are unavailable because Vault/economy is not hooked.'
+  wager-disabled: '&cDuel wagers are currently disabled.'
+  invalid-wager: '&cEnter a valid wager, for example &e1k&c, &e25k&c, &e1.5m&c or &e2m&c.'
+  wager-too-small: '&cThe wager must be at least $%amount%.'
+  wager-too-large: '&cThe wager cannot be more than $%amount%.'
+  not-enough-money: '&cOne of the players does not have enough money for that wager.'
+  arena-spawn-set: '&aDuel arena spawn %number% has been set.'
+  reloaded: '&aMagicDuels config reloaded.'
+  duel-cancelled: '&cThe duel was cancelled.'
